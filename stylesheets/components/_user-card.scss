@@ -2,27 +2,35 @@
 @use '../abstracts/' as a;
 
 .user-img {    
-    max-width: 50%;
+    max-width: 78px;
     border: 10px solid #fff;
     border-radius: 50%;
     display: flex;
     
 }
+.user-card {
+@include a.iconCard(10px, a.$user-card-bg);
 
-.user-name {
-font-size:user-card-name;
-color: a.$white;
-display: flex;
-flex-direction: column;
+    .user-profile {
 
-   > span {
-font-size: a.$user-title-span;
+
+        .user-name {
+        font-size:user-card-name;
+        color: a.$white;
+        display: flex;
+        flex-direction: column;
+        
+           > span {
+        font-size: a.$user-title-span;
+            }
+        }
+       
     }
 }
 
 .periods {
 color: a.$white;
-
+@include a.activityCard(10px, a.$white, a.$activity-card-dark-blue);
 }
 
 @media screen and (min-width: 800px) {

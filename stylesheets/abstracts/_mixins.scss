@@ -4,6 +4,7 @@ color: $color;
 background-color: $bg-color;
 }
 
-@mixin iconCard ($border-radius, $color) {
-
+@mixin iconCard ($border-radius, $bg-color) {
+    border-radius: $border-radius;
+    background-color: $bg-color;
 }
