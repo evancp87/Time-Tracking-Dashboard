@@ -1,15 +1,68 @@
-.dashboard-grid {
+@use '../abstracts' as a;
 
-    display: grid;
-    // grid-template-columns: 1fr 1fr 1fr 1fr;
-    // grid-template-columns: repeat(4,1fr)
-
-    grid-auto-rows: minmax(100px, auto);
-    grid-gap: 2em;
-    // justify-items: stretch;
-    // align-items: stretch;
+main {
+    padding: 50px;
 }
 
+.dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-grid {
+display: grid;
+grid-column: 1/3;
+align-self: start;
+}
+
+.activity-icon {
+    // @include 
+    display: flex;
+}
+
+
+.activity {
+    @include a.activityCard(10px, a.$white, a.$activity-card-dark-blue);
+}
+
+// .work {
+//     background-color: #fff;
+//     position: relative;
+//     border-radius: 10px;
+// }
+// .work:before {
+//     content: url('/images/icon-work.svg');
+//     background-repeat: no-repeat;
+//     background-color: green;
+//     position: absolute;
+//     top: -51px;
+//     right: 0px;
+//     z-index: -1;
+//     width: 100%;
+//     display: flex;
+//     justify-content: flex-end;
+//     border-radius: 10px;
+
+// }
+
+@media only screen and (min-width: 800px) {
+
+    
+    .dashboard-grid {
+        
+        display: grid;
+        // grid-template-columns: 1fr 1fr 1fr 1fr;
+        // grid-template-columns: repeat(4,1fr)
+        
+        grid-auto-rows: minmax(100px, auto);
+        grid-gap: 2em;
+        // justify-items: stretch;
+        // align-items: stretch;
+    }
+    
+}
 .activity div:nth-of-type(2) {
-    background-color: #5747EA;
+    background-color: a.$activity-card-dark-blue;
+    border-radius: 10px;
 }

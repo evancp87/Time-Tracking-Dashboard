@@ -1,0 +1,9 @@
+@mixin activityCard ($border-radius, $color, $bg-color) {
+border-radius: $border-radius;
+color: $color;
+background-color: $bg-color;
+}
+
+@mixin iconCard ($border-radius, $color) {
+
+}
