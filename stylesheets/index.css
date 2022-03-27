@@ -370,6 +370,7 @@ main {
 
 .dashboard-grid {
   display: grid;
+  grid-auto-rows: minMax(199px, auto);
   justify-content: center;
   grid-gap: 1em;
 }
@@ -381,7 +382,25 @@ main {
 }
 
 .activity-icon {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 1/3;
+  justify-content: end;
+}
+
+.activity-heading {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.activity-heading .ellipses {
+  width: 15px;
+  height: 5px;
+}
+.activity-heading .previous-activity {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .card-grid:nth-of-type(1) .activity-icon {
@@ -414,43 +433,94 @@ main {
   background-color: #f1c65b;
 }
 
+.card-grid:nth-of-type(7) .activity-icon {
+  border-radius: 10px;
+  background-color: #f1c65b;
+}
+
 .activity {
   border-radius: 10px;
   color: #fff;
   background-color: #1c1f4a;
+  grid-column: 1/2;
+  grid-row: 2/2;
 }
 
 @media only screen and (min-width: 800px) {
   .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minMax(100px, auto);
-    grid-gap: 2em;
+    grid-auto-rows: minmax(199px, auto);
+    grid-gap: 1em;
   }
 
-  .card-grid {
-    width: 255px;
+  .user-img {
+    align-self: none;
+  }
+
+  .activity-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .activity-heading .ellipses {
+    width: 15px;
+    height: 5px;
+  }
+  .activity-heading .previous-activity {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 }
 .user-img {
   max-width: 78px;
-  border: 10px solid #fff;
+  height: 78px;
+  border: 5px solid #fff;
   border-radius: 50%;
   display: flex;
+  align-self: center;
+  margin: 1em;
 }
 
 .user-card {
+  display: grid;
+  width: 327px;
+}
+.user-card .user-profile {
+  display: flex;
   border-radius: 10px;
   background-color: #5847eb;
+  z-index: 10;
 }
 .user-card .user-profile .user-name {
-  font-size: user-card-name;
+  font-size: 24px;
   color: #fff;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  font-weight: 400;
 }
 .user-card .user-profile .user-name > span {
   font-size: 15px;
+}
+
+.wrapper {
+  display: grid;
+}
+
+.periods-flex-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.user-profile, .periods {
+  display: grid;
+  grid-column: 1/2;
+}
+
+.periods-grid-wrapper {
+  display: grid;
 }
 
 .periods {
@@ -458,11 +528,42 @@ main {
   border-radius: 10px;
   color: #fff;
   background-color: #1c1f4a;
+  display: flex;
+  z-index: -10;
+  grid-row: 2;
+  margin-top: -10px;
+  justify-content: space-around;
+  align-items: center;
 }
 
 @media screen and (min-width: 800px) {
   .user-card {
     grid-row: 1/3;
+    width: 255px;
+  }
+  .user-card .user-profile {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .user-card .user-profile .user-name {
+    font-size: 40px;
+    margin-left: 0.5em;
+  }
+  .user-card .user-profile .user-name + span {
+    font-size: 15px;
+  }
+
+  .periods {
+    flex-direction: column;
+    z-index: -1;
+    grid-row: 2;
+    margin-top: -20px;
+    justify-content: space-evenly;
+    align-items: flex-start;
+  }
+  .periods h3 {
+    margin-left: 20px;
+    margin-top: 20px;
   }
 }
 

@@ -1,42 +1,122 @@
-
 @use '../abstracts/' as a;
 
-.user-img {    
-    max-width: 78px;
-    border: 10px solid #fff;
-    border-radius: 50%;
-    display: flex;
-    
+.user-img {
+  max-width: 78px;
+  height: 78px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-self: center;
+  // flex: 1 0 78px;
+  margin: 1em;
 }
+
+
 .user-card {
-@include a.iconCard(10px, a.$user-card-bg);
+  display: grid;
+  width: 327px;
 
-    .user-profile {
+  .user-profile {
+    display: flex;
+  @include a.iconCard(10px, a.$user-card-bg);
+z-index: 10;
 
+    .user-name {
+      font-size: a.$user-card-name-mobile;
+      color: a.$white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    //   flex: 0 1 50px;
+      font-weight: 400;
 
-        .user-name {
-        font-size:user-card-name;
-        color: a.$white;
-        display: flex;
-        flex-direction: column;
-        
-           > span {
+      > span {
         font-size: a.$user-title-span;
-            }
-        }
-       
+      }
     }
+  }
 }
+
+.wrapper {
+    display:grid;
+}
+.periods-flex-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.user-profile, .periods {
+    display: grid;
+    grid-column: 1/2;
+    }
+
+
+.periods-grid-wrapper {
+    display: grid;
+
+}
+
+
+
+
 
 .periods {
-color: a.$white;
-@include a.activityCard(10px, a.$white, a.$activity-card-dark-blue);
+  color: a.$white;
+  @include a.activityCard(10px, a.$white, a.$activity-card-dark-blue);
+  display: flex;
+  z-index: -10;
+  grid-row: 2;
+  margin-top: -10px;
+  justify-content: space-around;
+  align-items: center;
+// flex-direction: row;
+// justify-content:space-between;
 }
 
 @media screen and (min-width: 800px) {
 
-    .user-card {
-        grid-row: 1/3;
-        
+  
+  .user-card {
+    grid-row: 1/3;
+    width: 255px;
+    
+    .user-profile {
+      flex-direction: column;
+      justify-content: flex-start;
+
+      .user-name {
+          font-size: a.$user-card-name-desktop;
+          margin-left: 0.5em;
+  
+          + span {
+            font-size: a.$period;
+          }
+      }
     }
+
+// .user-card .user-profile .user-name {
+//   font-size: a.$user-card-name-desktop;
+//         margin-left: 1em;
+
+// }
+  }
+
+  .periods {
+    flex-direction:column;
+    z-index:-1;
+    grid-row: 2;
+    margin-top: -20px;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    
+    h3 {
+      margin-left: 20px;
+      margin-top: 20px;
+
+    }
+  }
+//   .profile-grid-wrapper, .periods-grid-wrapper {
+//     display: grid;
+//     grid-row: 1/6;
+//     }
 }
