@@ -377,7 +377,6 @@ main {
 
 .card-grid {
   display: grid;
-  width: 327px;
   height: auto;
 }
 
@@ -446,22 +445,27 @@ main {
   grid-row: 2/2;
 }
 
-@media only screen and (min-width: 800px) {
-  .dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(199px, auto);
-    grid-gap: 1em;
+@media only screen and (min-width: 1200px) {
+  main {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5em;
   }
 
-  .user-img {
-    align-self: none;
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 255px);
+    grid-auto-rows: minmax(199px, auto);
+    grid-column-gap: 2em;
   }
 
   .activity-heading {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 1em;
   }
   .activity-heading .ellipses {
     width: 15px;
@@ -471,6 +475,9 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+  }
+  .activity-heading .previous-activity :nth-child(1) {
+    padding: 1em;
   }
 }
 .user-img {
@@ -485,7 +492,6 @@ main {
 
 .user-card {
   display: grid;
-  width: 327px;
 }
 .user-card .user-profile {
   display: flex;
@@ -524,9 +530,8 @@ main {
 }
 
 .periods {
-  color: #fff;
   border-radius: 10px;
-  color: #fff;
+  color: #6f76c8;
   background-color: #1c1f4a;
   display: flex;
   z-index: -10;
@@ -534,6 +539,12 @@ main {
   margin-top: -10px;
   justify-content: space-around;
   align-items: center;
+}
+.periods .stats {
+  cursor: pointer;
+}
+.periods .stats:hover {
+  color: #fff;
 }
 
 @media screen and (min-width: 800px) {
@@ -551,6 +562,10 @@ main {
   }
   .user-card .user-profile .user-name + span {
     font-size: 15px;
+  }
+
+  .user-img {
+    align-self: flex-start;
   }
 
   .periods {

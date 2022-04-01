@@ -2,6 +2,7 @@
 
 main {
     padding: 50px;
+    
 }
 
 .dashboard-grid {
@@ -18,7 +19,7 @@ main {
 display: grid;
 // grid-column: 1/3;
 // align-self: start;
-width: a.$mobile-card-width;
+// width: a.$mobile-card-width;
 height: auto;
 }
 
@@ -117,32 +118,35 @@ height: auto;
 
 // }
 
-@media only screen and (min-width: 1000px) {
-
+@media only screen and (min-width: 1200px) {
+    main {
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5em;
+    }
     
     .dashboard-grid {
         
         display: grid;
-        // grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-columns: repeat(4,1fr);
-        
-        grid-auto-rows: minmax(199px, auto);
-        grid-gap: 1em;
-        // justify-items: stretch;
-        // align-items: stretch;
+    grid-template-columns: repeat(4, a.$desktop-card-width);
+    grid-auto-rows: minmax(199px, auto);
+    grid-column-gap: 2em;
     }
 
 
-    .user-img {
-        align-self: none; 
+    // .user-img {
+    //     align-self: flex-start; 
 
-    }
+    // }
     
     .activity-heading {
 
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-between;
+        padding: 1em;
     
         .ellipses {
             width: 15px;
@@ -152,6 +156,10 @@ height: auto;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
+
+            :nth-child(1) {
+                padding: 1em;
+            }
         }
     
     }

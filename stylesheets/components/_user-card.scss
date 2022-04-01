@@ -14,7 +14,7 @@
 
 .user-card {
   display: grid;
-  width: 327px;
+  // width: 327px;
 
   .user-profile {
     display: flex;
@@ -61,8 +61,7 @@ z-index: 10;
 
 
 .periods {
-  color: a.$white;
-  @include a.activityCard(10px, a.$white, a.$activity-card-dark-blue);
+  @include a.activityCard(10px, a.$activities, a.$activity-card-dark-blue);
   display: flex;
   z-index: -10;
   grid-row: 2;
@@ -71,7 +70,16 @@ z-index: 10;
   align-items: center;
 // flex-direction: row;
 // justify-content:space-between;
+  .stats {
+  cursor: pointer;
+
+  &:hover {
+    color: a.$white;
+
+  }
 }
+}
+
 
 @media screen and (min-width: 800px) {
 
@@ -100,6 +108,11 @@ z-index: 10;
 
 // }
   }
+
+  .user-img {
+    align-self: flex-start; 
+
+}
 
   .periods {
     flex-direction:column;
