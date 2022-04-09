@@ -28,8 +28,6 @@ height: auto;
 // }
 
 
-
-
 // .activity {
 //     grid-column: 1/2;
 //     grid-row: 2/2;
@@ -40,15 +38,15 @@ height: auto;
     grid-column: 1/2;
     grid-row: 1/3;
     justify-content: end;
-
+    
 }
 
 .activity-heading {
-
+    
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    
     .ellipses {
         width: 15px;
         height: 5px;
@@ -58,71 +56,99 @@ height: auto;
         flex-direction: row;
         justify-content: space-between;
     }
-
+    
 }
 
- .card-grid:nth-of-type(1) .activity-icon {
+.previous-activity {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+    
+    .curr-hrs {
+    font-size: a.$current-hours-mobile;
+    font-weight: 200;
+    }
+    
+    .prev-hrs {
+    font-size: a.$previous-hours;
+    font-weight: 400;
+    }
+}
+
+
+
+
+
+
+
+.card-grid:nth-of-type(2) .activity-icon {
     @include a.iconCard(10px, a.$work-bg);
 }
 
 
- .card-grid:nth-of-type(2) .activity-icon {
+.card-grid:nth-of-type(3) .activity-icon {
    @include a.iconCard(10px,a.$play-bg);
 }
- .card-grid:nth-of-type(3) .activity-icon {
-   @include a.iconCard(10px, a.$study-bg);
-    
-}
- .card-grid:nth-of-type(4) .activity-icon {
-   @include a.iconCard(10px, a.$exercise-bg);
+.card-grid:nth-of-type(4) .activity-icon {
+    @include a.iconCard(10px, a.$study-bg);
     
 }
  .card-grid:nth-of-type(5) .activity-icon {
-   @include a.iconCard(10px, a.$social-bg);
+     @include a.iconCard(10px, a.$exercise-bg);
+     
+    }
+    .card-grid:nth-of-type(6) .activity-icon {
+        @include a.iconCard(10px, a.$social-bg);
     
 }
 
- .card-grid:nth-of-type(6) .activity-icon {
-   @include a.iconCard(10px, a.$self-care-bg);
-    
-}
 .card-grid:nth-of-type(7) .activity-icon {
     @include a.iconCard(10px, a.$self-care-bg);
-     
- }
+    
+}
+.card-grid:nth-of-type(8) .activity-icon {
+    @include a.iconCard(10px, a.$self-care-bg);
+    
+}
 // .activity-icon:
 
 .activity {
     @include a.activityCard(10px, a.$white, a.$activity-card-dark-blue);
     grid-column: 1/2;
     grid-row: 2/2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.5em;
 }
 
 // .work {
-//     background-color: #fff;
-//     position: relative;
-//     border-radius: 10px;
-// }
-// .work:before {
-//     content: url('/images/icon-work.svg');
-//     background-repeat: no-repeat;
-//     background-color: green;
-//     position: absolute;
-//     top: -51px;
-//     right: 0px;
-//     z-index: -1;
-//     width: 100%;
-//     display: flex;
-//     justify-content: flex-end;
-//     border-radius: 10px;
-
-// }
-
-@media only screen and (min-width: 1200px) {
-    main {
-        padding: 50px;
-        display: flex;
-        flex-direction: column;
+    //     background-color: #fff;
+    //     position: relative;
+    //     border-radius: 10px;
+    // }
+    // .work:before {
+        //     content: url('/images/icon-work.svg');
+        //     background-repeat: no-repeat;
+        //     background-color: green;
+        //     position: absolute;
+        //     top: -51px;
+        //     right: 0px;
+        //     z-index: -1;
+        //     width: 100%;
+        //     display: flex;
+        //     justify-content: flex-end;
+        //     border-radius: 10px;
+        
+        // }
+        
+        @media only screen and (min-width: 1200px) {
+            main {
+                padding: 50px;
+                display: flex;
+                flex-direction: column;
         align-items: center;
         margin-top: 5em;
     }
@@ -133,42 +159,49 @@ height: auto;
     grid-template-columns: repeat(4, a.$desktop-card-width);
     grid-auto-rows: minmax(199px, auto);
     grid-column-gap: 2em;
-    }
+}
 
 
-    // .user-img {
+// .user-img {
     //     align-self: flex-start; 
-
+    
     // }
     
     .activity-heading {
-
+        
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        padding: 1em;
-    
+        
+        
         .ellipses {
             width: 15px;
             height: 5px;
         }
-        .previous-activity {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
 
-            :nth-child(1) {
-                padding: 1em;
-            }
-        }
-    
+        
     }
-    // .card-grid {
-    //     width: a.$desktop-card-width;
-    // }
+    .previous-activity {
+        display: flex;
+        flex-direction: column;
+        justify-content: normal;
+        align-items: normal;
+        
+       
+        
+        .curr-hrs {
+            font-size: a.$current-hours;
+            font-weight: 200;
+        }
+        
+    }
     
-}
-// .activity div:nth-of-type(2) {
-//     background-color: a.$activity-card-dark-blue;
-//     border-radius: 10px;
+  
+    // .card-grid {
+        //     width: a.$desktop-card-width;
+        // }
+        
+    }
+    // .activity div:nth-of-type(2) {
+        //     background-color: a.$activity-card-dark-blue;
+        //     border-radius: 10px;
 // }
