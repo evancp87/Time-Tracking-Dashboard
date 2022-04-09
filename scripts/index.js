@@ -42,7 +42,7 @@ const btnStyles = (duration) => {
   }
 };
 
-// const getData = fetch("data.json")
+// const getData = () => fetch("data.json")
 //   .then((response) => response.json())
 //   .then((data) => {
 //     console.log(data);
@@ -64,10 +64,12 @@ statBtns.forEach((statBtn) =>
       btnStyles("daily");
       getData().then((stats) =>
         stats.forEach((stat) => {
-          activities.innerHTML = `
-                <h3> ${stat.timeframes.daily.current} hrs</h3>;
-                <p>${stat.timeframes.daily.previous} hrs</p>`;
-          return stats;
+          activities.forEach((activity) => {
+            activity.innerHTML = `
+                      <h3> ${stat.timeframes.daily.current} hrs</h3>
+                      <p>Last Week ${stat.timeframes.daily.previous} hrs</p>`;
+            return activities;
+          });
         })
       );
     } else if (id === "weekly") {
@@ -75,11 +77,13 @@ statBtns.forEach((statBtn) =>
 
       getData().then((stats) =>
         stats.forEach((stat) => {
-          activities.innerHTML = `
-                <h3> ${stat.timeframes.weekly.current} hrs</h3>;
-                <p>${stat.timeframes.weekly.previous} hrs</p>`;
+          activities.forEach((activity) => {
+            activity.innerHTML = `
+                      <h3> ${stat.timeframes.weekly.current} hrs</h3>
+                      <p>Last Week ${stat.timeframes.weekly.previous} hrs</p>`;
 
-          return stats;
+            return activities;
+          });
         })
       );
     } else if (id === "monthly") {
@@ -88,11 +92,14 @@ statBtns.forEach((statBtn) =>
       getData().then((stats) =>
         stats.forEach((stat) => {
           console.log(`${stat.timeframes.monthly.previous} hours`);
-          activities.innerHTML = `
-                <h3> ${stat.timeframes.monthly.current} hrs</h3>;
-                <p>${stat.timeframes.monthly.previous} hrs</p>`;
+          activities.forEach((activity) => {
+            activity.innerHTML = `
+              <h3> ${stat.timeframes.monthly.current} hrs</h3>
+              <p>Last Week ${stat.timeframes.monthly.previous} hrs</p>`;
 
-          return stats;
+            console.log(activities.innerHTML);
+            return activities;
+          });
         })
       );
     }
