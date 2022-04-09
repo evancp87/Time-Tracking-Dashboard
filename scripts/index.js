@@ -1,16 +1,15 @@
-// const daily = document.getElementById('daily');
-// const weekly = document.getElementById('weekly');
-// const monthly = document.getElementById('monthly');
-
-// const filter = stats.filter((title) => title === title.id);
-// stat options on user profile card
+// gets all stat buttons
 const statBtns = document.querySelectorAll(".stats");
+
+// console.log(daily);
 console.log(statBtns);
 
-// gets current and previous activity sections of activity cards
-const activities = document.querySelectorAll("previous-activity");
+// document.querySelector("#daily").addEventListener("click", () => {
+// document.querySelector("#weekly").style.color = "red";
 
-// Fetching data from Json file
+// })
+
+// Async await to fetch data from Json file
 const getData = async () => {
   try {
     const response = await fetch("data.json");
@@ -23,137 +22,79 @@ const getData = async () => {
   }
 };
 
+const btnStyles = (duration) => {
+  const daily = document.querySelector("#daily");
+  const weekly = document.querySelector("#weekly");
+  const monthly = document.querySelector("#monthly");
+
+  if (duration === "daily") {
+    daily.style.opacity = "1";
+    weekly.style.opacity = "0.3";
+    monthly.style.opacity = "0.3";
+  } else if (duration === "weekly") {
+    daily.style.opacity = "0.3";
+    weekly.style.opacity = "1";
+    monthly.style.opacity = "0.3";
+  } else if (duration === "monthly") {
+    daily.style.opacity = "0.3";
+    weekly.style.opacity = "0.3";
+    monthly.style.opacity = "1";
+  }
+};
+
+// const getData = fetch("data.json")
+//   .then((response) => response.json())
+//   .then((data) => {
+//     console.log(data);
+//     return data
+//   })
+
 console.log(getData());
 // adds event listener to each button
+
 statBtns.forEach((statBtn) =>
-  statBtn.addEventListener("click", () => {
-    // activities.map((e) => e.currentTarget.add )
-    // const currHrs = document.createElement('<h3>');
-    // const prevHrs = document.createElement('p');
-    const currHrs = document.querySelectorAll("currHrs");
-    const prevHrs = document.querySelectorAll("prevHrs");
+  statBtn.addEventListener("click", (e) => {
+    const activities = document.querySelectorAll(".previous-activity");
+    console.log(activities);
 
     const id = e.target.id;
+    console.log(id);
 
-    
     if (id === "daily") {
-        getData().then(stats.forEach( stat => {
+      btnStyles("daily");
+      getData().then((stats) =>
+        stats.forEach((stat) => {
           activities.innerHTML = `
-                  <h3> ${stat.timeframes.daily.current}</h3>;
-                  <p>${stat.timeframes.daily.previous}</p>`;
-        }));
-      }
-  
-      
-      
+                <h3> ${stat.timeframes.daily.current} hrs</h3>;
+                <p>${stat.timeframes.daily.previous} hrs</p>`;
+          return stats;
+        })
+      );
+    } else if (id === "weekly") {
+      btnStyles("weekly");
 
-    
+      getData().then((stats) =>
+        stats.forEach((stat) => {
+          activities.innerHTML = `
+                <h3> ${stat.timeframes.weekly.current} hrs</h3>;
+                <p>${stat.timeframes.weekly.previous} hrs</p>`;
 
-    if (id === "weekly") {
-      getData().then(stats.forEach( stat => {
-        activities.innerHTML = `
-                <h3> ${stat.timeframes.weekly.current}</h3>;
-                <p>${stat.timeframes.weekly.previous}</p>`;
-      }));
+          return stats;
+        })
+      );
+    } else if (id === "monthly") {
+      btnStyles("monthly");
+
+      getData().then((stats) =>
+        stats.forEach((stat) => {
+          console.log(`${stat.timeframes.monthly.previous} hours`);
+          activities.innerHTML = `
+                <h3> ${stat.timeframes.monthly.current} hrs</h3>;
+                <p>${stat.timeframes.monthly.previous} hrs</p>`;
+
+          return stats;
+        })
+      );
     }
-
-    if (id === "monthly") {
-        getData().then(stats.forEach( stat => {
-          activities.innerHTML = `
-                  <h3> ${stat.timeframes.monthly.current}</h3>;
-                  <p>${stat.timeframes.monthly.previous}</p>`;
-        }));
-      }
   })
 );
-// class Statistic {
-//   constructor(title, timeframes) {
-//     this.title = title;
-//     this.timeframes = timeframes;
-//   }
-// }
-
-// asynchronous call to json file
-
-//
-
-// getData().then(stats => {
-//     const filter = stats.filter(stat => new Statistic(
-//         stat.title,
-//         stat.timeframes
-//         )
-
-//         // switch (state.title) {
-//         //     case 'Work':
-//         //     break;
-//         //     case 'Play':
-//         //     break;
-//         //     case 'Study':
-//         //     break;
-//         //     case 'Exercise':
-//         //     break;
-//         //     case 'Social':
-//         //     break;
-//         //     case 'Self Care':
-//         //     break;
-
-//         // }
-//     )
-
-// })
-
-// stats.map((stat) => {
-//     stat.addEventListener("click", (e) => {
-
-//         // const createElement
-//       e.currentTarget.classList.add("active");
-
-//     //   stat.innerHTML = createElement / appendChild
-//     });
-//   });
-
-// OOP comparisons between variables and data
-
-// onLoad function has default state
-
-// const getActivityData = () => {
-// const removeActivityData = () => document.querySelectorAll('curr-hrs, prev-hrs').style.display = "none";
-// removeActivityData();
-//     console.log(removeActivityData);
-
-//     getData().then((stats) => {
-//     // const filter = stats.filter(stat => stat === stat.id)
-//      const currHrs = document.createElement('<h3>');
-//      const prevHrs = document.createElement('p');
-
-//      const id = e.currentTarget.id;
-//     //  activities.classList.add('')
-
-//         if (stat.id === "daily") {
-//         currHrs.innerHTML = stat.timeframes.daily.current;
-//         prevHrs.innerHTML = stat.timeframes.daily.previous;
-//         };
-
-//         if (stat.id === "weekly") {
-//         //   return stat.timeframes.weekly;
-//         currHrs.innerHTML = stat.timeframes.daily.current;
-//         prevHrs.innerHTML = stat.timeframes.daily.previous;
-
-//         }
-
-//         if (stat.id === "monthly") {
-//             currHrs.innerHTML = stat.timeframes.daily.current;
-//         prevHrs.innerHTML = stat.timeframes.daily.previous;
-//         }
-// currHrs.appendChild(prevHrs);
-
-//     });
-
-// }
-
-// getActivityData();
-
-//         // const createElement
-//       e.currentTarget.classList.add("active");
-
-//     //   stat.innerHTML = createElement / appendChild
