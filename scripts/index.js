@@ -1,8 +1,8 @@
 // gets all stat buttons
 const statBtns = document.querySelectorAll(".stats");
-
 // console.log(daily);
 console.log(statBtns);
+
 
 // document.querySelector("#daily").addEventListener("click", () => {
 // document.querySelector("#weekly").style.color = "red";
@@ -20,7 +20,7 @@ const getData = async () => {
     console.log("There was an error fetching the data");
     console.log(error);
   }
-};
+}
 
 const btnStyles = (duration) => {
   const daily = document.querySelector("#daily");
@@ -59,16 +59,16 @@ statBtns.forEach((statBtn) =>
 
     const id = e.target.id;
     console.log(id);
-
+// const timeframes = ["daily", "weekly", "monthly"];
     if (id === "daily") {
       btnStyles("daily");
       getData().then((stats) =>
         stats.forEach((stat) => {
           activities.forEach((activity) => {
             activity.innerHTML = `
-                      <h3> ${stat.timeframes.daily.current} hrs</h3>
-                      <p>Last Week ${stat.timeframes.daily.previous} hrs</p>`;
-            return activities;
+                      <h3 class='curr-hrs'> ${stat.timeframes.daily.current} hrs</h3>
+                      <p class='previous-hrs'>Last Week - ${stat.timeframes.daily.previous} hrs</p>`;
+            // return activity;
           });
         })
       );
@@ -78,28 +78,35 @@ statBtns.forEach((statBtn) =>
       getData().then((stats) =>
         stats.forEach((stat) => {
           activities.forEach((activity) => {
+              console.log(activity)
             activity.innerHTML = `
-                      <h3> ${stat.timeframes.weekly.current} hrs</h3>
-                      <p>Last Week ${stat.timeframes.weekly.previous} hrs</p>`;
+                      <h3 class='curr-hrs'> ${stat.timeframes.weekly.current} hrs</h3>
+                      <p class='previous-hrs'>Last Week - ${stat.timeframes.weekly.previous} hrs</p>`;
 
-            return activities;
+            // return activity;
           });
         })
       );
     } else if (id === "monthly") {
+
+    
       btnStyles("monthly");
 
       getData().then((stats) =>
-        stats.forEach((stat) => {
+        stats.map((stat) => {
           console.log(`${stat.timeframes.monthly.previous} hours`);
-          activities.forEach((activity) => {
-            activity.innerHTML = `
-              <h3> ${stat.timeframes.monthly.current} hrs</h3>
-              <p>Last Week ${stat.timeframes.monthly.previous} hrs</p>`;
+        
+            //   console.log(activity);
+               activities.innerHTML = `
+              <h3 class='curr-hrs'> ${stat.timeframes.monthly.current} hrs</h3>
+              <p class='previous-hrs'>Last Week - ${stat.timeframes.monthly.previous} hrs</p>`;
 
             console.log(activities.innerHTML);
-            return activities;
-          });
+            // return activities.forEach((activity => activity.innerHTML));
+            // let content = activities.innerHTML
+            // console.log(content);
+
+         
         })
       );
     }
