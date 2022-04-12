@@ -517,6 +517,7 @@ main {
   display: flex;
   border-radius: 10px;
   background-color: #5847eb;
+  z-index: 10;
 }
 .user-card .user-profile .user-name {
   font-size: 24px;
@@ -554,6 +555,7 @@ main {
   color: #6f76c8;
   background-color: #1c1f4a;
   display: flex;
+  z-index: 0;
   grid-row: 2;
   margin-top: -10px;
   justify-content: space-around;
