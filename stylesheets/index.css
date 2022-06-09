@@ -464,6 +464,10 @@ main {
   padding: 0.5em;
 }
 
+.atrribution {
+  color: #fff;
+}
+
 @media only screen and (min-width: 1200px) {
   main {
     padding: 50px;
@@ -487,6 +491,9 @@ main {
   .activity-heading .ellipses {
     width: 15px;
     height: 5px;
+  }
+  .activity-heading .ellipses:hover {
+    filter: brightness(150%);
   }
 
   .previous-activity {
@@ -541,7 +548,8 @@ main {
   justify-content: space-around;
 }
 
-.user-profile, .periods {
+.user-profile,
+.periods {
   display: grid;
   grid-column: 1/2;
 }
@@ -561,8 +569,15 @@ main {
   justify-content: space-around;
   align-items: center;
 }
+.periods .stats {
+  background-color: transparent;
+  color: #7078c9;
+  border: none;
+  transition: 0.4s ease-in-out;
+}
 .periods .stats:hover {
   color: #fff;
+  opacity: 1;
   cursor: pointer;
 }
 

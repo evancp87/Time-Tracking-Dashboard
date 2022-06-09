@@ -1,27 +1,54 @@
 // gets all stat buttons
 const statBtns = document.querySelectorAll(".stats");
-// console.log(daily);
 console.log(statBtns);
-
-
-// document.querySelector("#daily").addEventListener("click", () => {
-// document.querySelector("#weekly").style.color = "red";
-
-// })
 
 // Async await to fetch data from Json file
 const getData = async () => {
   try {
     const response = await fetch("data.json");
     const stats = await response.json();
+    // return await response.json();
 
     return stats;
   } catch (error) {
     console.log("There was an error fetching the data");
     console.log(error);
   }
-}
+};
 
+console.log(getData());
+
+// Gets all six activity cards and saves as variable
+const activityCards = document.querySelectorAll(".activity");
+
+// function that loads data in each activity card by making api call. Invoked in event listener further below
+function showData(btn) {
+  activityCards.forEach((activityCard, index) => {
+    const prevActivity = activityCard.querySelector(".previous-activity");
+
+    getData().then((data) => {
+      const currHrs = data[index].timeframes[btn.dataset.btn].current;
+      const prevHrs = data[index].timeframes[btn.dataset.btn].previous;
+
+      switch (btn.dataset.btn) {
+        case "daily":
+          btnStyles("daily");
+          prevActivity.innerHTML = `<h3 class='curr-hrs'> ${currHrs} hrs</h3>
+      <p class='previous-hrs'>Last Week - ${prevHrs} hrs</p>`;
+        case "weekly":
+          btnStyles("weekly");
+          prevActivity.innerHTML = `<h3 class='curr-hrs'> ${currHrs} hrs</h3>
+      <p class='previous-hrs'>Last Week - ${prevHrs} hrs</p>`;
+        case "monthly":
+          btnStyles("monthly");
+          prevActivity.innerHTML = `<h3 class='curr-hrs'> ${currHrs} hrs</h3>
+      <p class='previous-hrs'>Last Week - ${prevHrs} hrs</p>`;
+        default:
+      }
+    });
+  });
+}
+// function that applies opacity to buttons based on whether active or not
 const btnStyles = (duration) => {
   const daily = document.querySelector("#daily");
   const weekly = document.querySelector("#weekly");
@@ -29,86 +56,36 @@ const btnStyles = (duration) => {
 
   if (duration === "daily") {
     daily.style.opacity = "1";
+    daily.style.color = "white";
     weekly.style.opacity = "0.3";
     monthly.style.opacity = "0.3";
   } else if (duration === "weekly") {
     daily.style.opacity = "0.3";
     weekly.style.opacity = "1";
+    weekly.style.color = "white";
     monthly.style.opacity = "0.3";
   } else if (duration === "monthly") {
     daily.style.opacity = "0.3";
     weekly.style.opacity = "0.3";
     monthly.style.opacity = "1";
+    monthly.style.color = "white";
   }
 };
 
-// const getData = () => fetch("data.json")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     console.log(data);
-//     return data
-//   })
-
 console.log(getData());
+
 // adds event listener to each button
 
-statBtns.forEach((statBtn) =>
+statBtns.forEach((statBtn) => {
   statBtn.addEventListener("click", (e) => {
-    const activities = document.querySelectorAll(".previous-activity");
-    console.log(activities);
+    showData(e.currentTarget);
+  });
+});
 
-    const id = e.target.id;
-    console.log(id);
-// const timeframes = ["daily", "weekly", "monthly"];
-    if (id === "daily") {
-      btnStyles("daily");
-      getData().then((stats) =>
-        stats.forEach((stat) => {
-          activities.forEach((activity) => {
-            activity.innerHTML = `
-                      <h3 class='curr-hrs'> ${stat.timeframes.daily.current} hrs</h3>
-                      <p class='previous-hrs'>Last Week - ${stat.timeframes.daily.previous} hrs</p>`;
-            // return activity;
-          });
-        })
-      );
-    } else if (id === "weekly") {
-      btnStyles("weekly");
-
-      getData().then((stats) =>
-        stats.forEach((stat) => {
-          activities.forEach((activity) => {
-              console.log(activity)
-            activity.innerHTML = `
-                      <h3 class='curr-hrs'> ${stat.timeframes.weekly.current} hrs</h3>
-                      <p class='previous-hrs'>Last Week - ${stat.timeframes.weekly.previous} hrs</p>`;
-
-            // return activity;
-          });
-        })
-      );
-    } else if (id === "monthly") {
-
-    
-      btnStyles("monthly");
-
-      getData().then((stats) =>
-        stats.map((stat) => {
-          console.log(`${stat.timeframes.monthly.previous} hours`);
-        
-            //   console.log(activity);
-               activities.innerHTML = `
-              <h3 class='curr-hrs'> ${stat.timeframes.monthly.current} hrs</h3>
-              <p class='previous-hrs'>Last Week - ${stat.timeframes.monthly.previous} hrs</p>`;
-
-            console.log(activities.innerHTML);
-            // return activities.forEach((activity => activity.innerHTML));
-            // let content = activities.innerHTML
-            // console.log(content);
-
-         
-        })
-      );
-    }
-  })
-);
+// loads default data
+function defaultData() {
+  btnStyles("daily");
+  const daily = document.querySelector("[data-tab='daily']");
+  showData("daily");
+}
+document.addEventListener("DOMContentLoaded", defaultData);
