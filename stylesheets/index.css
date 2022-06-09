@@ -387,6 +387,12 @@ main {
   justify-content: end;
 }
 
+.activity:hover {
+  transition: 0.4s ease-in-out;
+  background-color: #323986;
+  cursor: pointer;
+}
+
 .activity-heading {
   display: flex;
   flex-direction: row;
@@ -494,6 +500,7 @@ main {
   }
   .activity-heading .ellipses:hover {
     filter: brightness(150%);
+    cursor: pointer;
   }
 
   .previous-activity {
@@ -579,6 +586,10 @@ main {
   color: #fff;
   opacity: 1;
   cursor: pointer;
+}
+
+.stats.active {
+  color: #fff;
 }
 
 @media screen and (min-width: 1200px) {
